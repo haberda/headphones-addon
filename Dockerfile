@@ -1,19 +1,13 @@
-FROM bbernhard/signal-cli-rest-api:0.37
+FROM linuxserver/headphones:379fd3d0-ls67
 
-LABEL io.hass.version="0.37.2" io.hass.type="addon" io.hass.arch="armhf|aarch64|amd64"
+LABEL io.hass.version="ls67" io.hass.type="addon" io.hass.arch="armhf|aarch64|amd64"
 
-COPY options.sh /options.sh
+# modify/copy files
 
-RUN ["chmod", "+x", "/options.sh"]
+RUN sed -i "s|config|data|g" /etc/cont-init.d/*
 
-RUN apt-get clean \
+RUN sed -i "s|config|data|g" /etc/services.d/headphones/*
 
-        && apt-get update \
+COPY root/ /
 
-        && apt-get install -y --no-install-recommends jq
-
-WORKDIR /data/data/
-
-ENTRYPOINT ["/options.sh"]
-
-VOLUME ["/data"]
+VOLUME ["/share", "/ssl", "/data", "/media"]

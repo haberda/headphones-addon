@@ -1,6 +1,6 @@
-FROM linuxserver/headphones:379fd3d0-ls67
+FROM linuxserver/headphones:version-379fd3d0
 
-LABEL io.hass.version="ls67" io.hass.type="addon" io.hass.arch="armhf|aarch64|amd64"
+LABEL io.hass.version="379fd3d0" io.hass.type="addon" io.hass.arch="armhf|aarch64|amd64"
 
 # modify/copy files
 
